@@ -1,0 +1,51 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      # This prevents the host's node_modules from overwriting the container's
+      - /app/node_modules
+    # This command ensures dependencies are installed on startup, making the
+    # setup more robust against volume sync issues.
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    networks:
+      - e2e-network
+
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "6543:6543"
+    networks:
+      - e2e-network
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+    networks:
+      - e2e-network
+
+  e2e-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run test:docker"
+    depends_on:
+      - prod
+      - selenium
+    networks:
+      - e2e-network
+
+networks:
+  e2e-network:
+    driver: bridge
+
