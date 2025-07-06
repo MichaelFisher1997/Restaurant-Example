@@ -9,21 +9,43 @@ const featuredItems = allMenuItems.slice(0, 3);
 ---
 
 <MainLayout title="The Golden Spoon - Welcome">
-	<Hero />
+  <Hero />
 
-	<section class="py-20">
-		<div class="container mx-auto px-4">
-			<h2 class="text-4xl font-bold text-center mb-12">Featured Dishes</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{featuredItems.map(item => (
-					<MenuItemCard 
-						name={item.name} 
-						description={item.description} 
-						price={item.price} 
-						image={item.image} 
-					/>
-				))}
-			</div>
-		</div>
-	</section>
+  <section id="featured-dishes" class="py-20 bg-gray-900">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold text-white mb-12">Featured Dishes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-800 rounded-lg overflow-hidden">
+          <img class="w-full h-48 object-cover" src="/images/filet-mignon.webp" alt="Filet Mignon">
+          <div class="p-6">
+            <h3 class="font-bold text-xl mb-2 text-white">Filet Mignon</h3>
+            <p class="text-gray-300 text-base">Perfectly cooked with a seared crust and juicy interior.</p>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg overflow-hidden">
+          <img class="w-full h-48 object-cover" src="/images/mushroom-risotto.webp" alt="Mushroom Risotto">
+          <div class="p-6">
+            <h3 class="font-bold text-xl mb-2 text-white">Mushroom Risotto</h3>
+            <p class="text-gray-300 text-base">Creamy and savory, with wild mushrooms and parmesan.</p>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg overflow-hidden">
+          <img class="w-full h-48 object-cover" src="/images/tiramisu.webp" alt="Tiramisu">
+          <div class="p-6">
+            <h3 class="font-bold text-xl mb-2 text-white">Tiramisu</h3>
+            <p class="text-gray-300 text-base">A classic Italian dessert with coffee and mascarpone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="call-to-action" class="py-20 bg-gray-800">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold text-white mb-4">Visit Us</h2>
+      <p class="text-xl text-gray-200 mb-8">Find our location and opening hours.</p>
+      <a href="/find-us" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition duration-300">Find Us</a>
+    </div>
+  </section>
 </MainLayout>
+
